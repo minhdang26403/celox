@@ -35,7 +35,7 @@ To build the project, ensure you have `CMake` installed, along with a C compiler
 ## Status
 
 The following features are currently implemented in the language:
-- [ ] Chunks of Bytecode
+- [x] Chunks of Bytecode
 - [ ] A Virtual Machine
 - [ ] Scanning on Demand
 - [ ] Compiling Expressions
