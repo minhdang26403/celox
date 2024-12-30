@@ -26,7 +26,7 @@ if(NOT DEFINED SANITIZER)
   set(SANITIZER thread)
 endif()
 
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS_DEBUG} -Wall -Wextra -Werror -Wno-unused-parameter")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS_DEBUG} -Wall -Wextra -Werror -Wno-unused-parameter -Wno-unused-function")
 set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -O0 -g -fsanitize=${SANITIZER} -fno-omit-frame-pointer -fno-optimize-sibling-calls")
 
 # #####################################################################################################################

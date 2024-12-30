@@ -1,8 +1,10 @@
 # Define the library
 add_library(lox
   chunk.c
+  compiler.c
   debug.c
   memory.c
+  scanner.c
   value.c
   vm.c
 )
