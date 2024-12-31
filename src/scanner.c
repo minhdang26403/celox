@@ -5,14 +5,14 @@
 #include "scanner.h"
 
 typedef struct {
-  const char *start;
-  const char *current;
+  const char* start;
+  const char* current;
   int line;
 } Scanner;
 
 Scanner scanner;
 
-void init_scanner(const char *source) {
+void init_scanner(const char* source) {
   scanner.start = source;
   scanner.current = source;
   scanner.line = 1;
@@ -60,7 +60,7 @@ static Token make_token(TokenType type) {
   return token;
 }
 
-static Token error_token(const char *message) {
+static Token error_token(const char* message) {
   Token token;
   token.type = TOKEN_ERROR;
   token.start = message;
@@ -98,7 +98,7 @@ static void skip_whitespace() {
   }
 }
 
-static TokenType check_keyword(int start, int length, const char *rest,
+static TokenType check_keyword(int start, int length, const char* rest,
                                TokenType type) {
   if (scanner.current - scanner.start == start + length &&
       memcmp(scanner.start + start, rest, length) == 0) {
