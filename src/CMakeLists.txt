@@ -11,7 +11,7 @@ add_library(lox
 
 # Add DEBUG_TRACE_EXECUTION for Debug builds only
 target_compile_definitions(lox PRIVATE
-    $<$<CONFIG:Debug>:DEBUG_TRACE_EXECUTION>  # Define in Debug builds
+    $<$<CONFIG:Debug>:DEBUG_TRACE_EXECUTION;DEBUG_PRINT_CODE>  # Define in Debug builds
 )
 
 # Define the executable
