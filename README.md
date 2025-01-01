@@ -38,9 +38,9 @@ The following features are currently implemented in the language:
 - [x] Chunks of Bytecode
 - [x] A Virtual Machine
 - [x] Scanning on Demand
-- [ ] Compiling Expressions
-- [ ] Types of Values
-- [ ] Strings
+- [x] Compiling Expressions
+- [x] Types of Values
+- [x] Strings
 - [ ] Hash Tables
 - [ ] Global Variables
 - [ ] Local Variables
