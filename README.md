@@ -41,7 +41,7 @@ The following features are currently implemented in the language:
 - [x] Compiling Expressions
 - [x] Types of Values
 - [x] Strings
-- [ ] Hash Tables
+- [x] Hash Tables
 - [ ] Global Variables
 - [ ] Local Variables
 - [ ] Jumping Back and Forth
