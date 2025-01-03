@@ -42,7 +42,7 @@ The following features are currently implemented in the language:
 - [x] Types of Values
 - [x] Strings
 - [x] Hash Tables
-- [ ] Global Variables
+- [x] Global Variables
 - [ ] Local Variables
 - [ ] Jumping Back and Forth
 - [ ] Calls and Functions
