@@ -43,7 +43,7 @@ The following features are currently implemented in the language:
 - [x] Strings
 - [x] Hash Tables
 - [x] Global Variables
-- [ ] Local Variables
+- [x] Local Variables
 - [ ] Jumping Back and Forth
 - [ ] Calls and Functions
 - [ ] Closures
