@@ -44,7 +44,7 @@ The following features are currently implemented in the language:
 - [x] Hash Tables
 - [x] Global Variables
 - [x] Local Variables
-- [ ] Jumping Back and Forth
+- [x] Jumping Back and Forth
 - [ ] Calls and Functions
 - [ ] Closures
 - [ ] Garbage Collection
