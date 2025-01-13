@@ -46,7 +46,7 @@ The following features are currently implemented in the language:
 - [x] Local Variables
 - [x] Jumping Back and Forth
 - [x] Calls and Functions
-- [ ] Closures
+- [x] Closures
 - [ ] Garbage Collection
 - [ ] Classes and Instances
 - [ ] Methods and Initializers
