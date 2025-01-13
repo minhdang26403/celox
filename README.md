@@ -47,7 +47,7 @@ The following features are currently implemented in the language:
 - [x] Jumping Back and Forth
 - [x] Calls and Functions
 - [x] Closures
-- [ ] Garbage Collection
+- [x] Garbage Collection
 - [ ] Classes and Instances
 - [ ] Methods and Initializers
 - [ ] Superclasses

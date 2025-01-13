@@ -8,6 +8,8 @@
 // Flags defined in CMake file:
 // - DEBUG_PRINT_CODE
 // - DEBUG_TRACE_EXECUTION
+// - DEBUG_STRESS_GC
+// - DEBUG_LOG_GC
 
 #define UINT8_COUNT (UINT8_MAX + 1)
 
