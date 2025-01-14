@@ -48,7 +48,7 @@ The following features are currently implemented in the language:
 - [x] Calls and Functions
 - [x] Closures
 - [x] Garbage Collection
-- [ ] Classes and Instances
+- [x] Classes and Instances
 - [ ] Methods and Initializers
 - [ ] Superclasses
 - [ ] Optimization

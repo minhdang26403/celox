@@ -391,7 +391,7 @@ static uint8_t argument_list() {
   return arg_count;
 }
 
-static void and_(bool canAssign) {
+static void and_(bool can_assign) {
   int end_jump = emit_jump(OP_JUMP_IF_FALSE);
 
   emit_byte(OP_POP);
@@ -401,11 +401,11 @@ static void and_(bool canAssign) {
 }
 
 static void binary(bool can_assign) {
-  TokenType operatorType = parser.previous.type;
-  ParseRule* rule = get_rule(operatorType);
+  TokenType operator_type = parser.previous.type;
+  ParseRule* rule = get_rule(operator_type);
   parse_precedence((Precedence)(rule->precedence + 1));
 
-  switch (operatorType) {
+  switch (operator_type) {
   case TOKEN_BANG_EQUAL:
     emit_bytes(OP_EQUAL, OP_NOT);
     break;
@@ -441,9 +441,21 @@ static void binary(bool can_assign) {
   }
 }
 
-static void call(bool canAssign) {
-  uint8_t argCount = argument_list();
-  emit_bytes(OP_CALL, argCount);
+static void call(bool can_assign) {
+  uint8_t arg_count = argument_list();
+  emit_bytes(OP_CALL, arg_count);
+}
+
+static void dot(bool can_assign) {
+  consume(TOKEN_IDENTIFIER, "Expect property name after '.'.");
+  uint8_t name = identifier_constant(&parser.previous);
+
+  if (can_assign && match(TOKEN_EQUAL)) {
+    expression();
+    emit_bytes(OP_SET_PROPERTY, name);
+  } else {
+    emit_bytes(OP_GET_PROPERTY, name);
+  }
 }
 
 static void literal(bool can_assign) {
@@ -472,7 +484,7 @@ static void number(bool can_assign) {
   emit_constant(NUMBER_VAL(value));
 }
 
-static void or_(bool canAssign) {
+static void or_(bool can_assign) {
   int else_jump = emit_jump(OP_JUMP_IF_FALSE);
   int end_jump = emit_jump(OP_JUMP);
 
@@ -516,13 +528,13 @@ static void variable(bool can_assign) {
 }
 
 static void unary(bool can_assign) {
-  TokenType operatorType = parser.previous.type;
+  TokenType operator_type = parser.previous.type;
 
   // Compile the operand.
   parse_precedence(PREC_UNARY);
 
   // Emit the operator instruction.
-  switch (operatorType) {
+  switch (operator_type) {
   case TOKEN_BANG:
     emit_byte(OP_NOT);
     break;
@@ -541,7 +553,7 @@ ParseRule rules[] = {
   [TOKEN_LEFT_BRACE]    = {NULL,     NULL,   PREC_NONE}, 
   [TOKEN_RIGHT_BRACE]   = {NULL,     NULL,   PREC_NONE},
   [TOKEN_COMMA]         = {NULL,     NULL,   PREC_NONE},
-  [TOKEN_DOT]           = {NULL,     NULL,   PREC_NONE},
+  [TOKEN_DOT]           = {NULL,     dot,    PREC_CALL},
   [TOKEN_MINUS]         = {unary,    binary, PREC_TERM},
   [TOKEN_PLUS]          = {NULL,     binary, PREC_TERM},
   [TOKEN_SEMICOLON]     = {NULL,     NULL,   PREC_NONE},
@@ -640,6 +652,18 @@ static void function(FunctionType type) {
     emit_byte(compiler.upvalues[i].is_local ? 1 : 0);
     emit_byte(compiler.upvalues[i].index);
   }
+}
+
+static void class_declaration() {
+  consume(TOKEN_IDENTIFIER, "Expect class name.");
+  uint8_t name_constant = identifier_constant(&parser.previous);
+  declare_variable();
+
+  emit_bytes(OP_CLASS, name_constant);
+  define_variable(name_constant);
+
+  consume(TOKEN_LEFT_BRACE, "Expect '{' before class body.");
+  consume(TOKEN_RIGHT_BRACE, "Expect '}' after class body.");
 }
 
 static void fun_declaration() {
@@ -795,7 +819,9 @@ static void synchronize() {
 }
 
 static void declaration() {
-  if (match(TOKEN_FUN)) {
+  if (match(TOKEN_CLASS)) {
+    class_declaration();
+  } else if (match(TOKEN_FUN)) {
     fun_declaration();
   } else if (match(TOKEN_VAR)) {
     var_declaration();
