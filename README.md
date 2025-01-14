@@ -50,5 +50,5 @@ The following features are currently implemented in the language:
 - [x] Garbage Collection
 - [x] Classes and Instances
 - [x] Methods and Initializers
-- [ ] Superclasses
+- [x] Superclasses
 - [ ] Optimization
