@@ -51,4 +51,4 @@ The following features are currently implemented in the language:
 - [x] Classes and Instances
 - [x] Methods and Initializers
 - [x] Superclasses
-- [ ] Optimization
+- [x] Optimization

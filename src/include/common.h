@@ -6,6 +6,7 @@
 #include <stdint.h>
 
 // Flags defined in CMake file:
+// - NAN_BOXING
 // - DEBUG_PRINT_CODE
 // - DEBUG_TRACE_EXECUTION
 // - DEBUG_STRESS_GC
